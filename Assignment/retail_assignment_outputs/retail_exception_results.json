@@ -1,0 +1,70 @@
+[
+  {
+    "case_id": "EX-101",
+    "action": "REPLENISH_FROM_BACKROOM",
+    "confidence": 0.95,
+    "rationale": "Verified backroom quantity covers the shelf gap plus safety stock.",
+    "evidence": [
+      "backroom_qty=8",
+      "source=live",
+      "age_minutes=1"
+    ],
+    "policy_refs": [
+      "POL-INV-01"
+    ],
+    "risk_flags": [],
+    "escalation_required": false
+  },
+  {
+    "case_id": "EX-102",
+    "action": "WAIT_FOR_INBOUND",
+    "confidence": 0.91,
+    "rationale": "Current shelf cover is sufficient and a confirmed delivery is due within four hours.",
+    "evidence": [
+      "shelf_qty=4",
+      "eta_hours=3",
+      "inbound_confirmed=True"
+    ],
+    "policy_refs": [
+      "POL-INB-02"
+    ],
+    "risk_flags": [],
+    "escalation_required": false
+  },
+  {
+    "case_id": "EX-103",
+    "action": "TRANSFER_FROM_NEARBY_STORE",
+    "confidence": 0.88,
+    "rationale": "S208 is within range and retains the required safety stock after transfer.",
+    "evidence": [
+      "donor_store=S208",
+      "distance_miles=7.2",
+      "available_qty=10"
+    ],
+    "policy_refs": [
+      "POL-TRN-03"
+    ],
+    "risk_flags": [],
+    "escalation_required": false
+  },
+  {
+    "case_id": "EX-104",
+    "action": "REPLENISH_FROM_BACKROOM",
+    "confidence": 0.72,
+    "rationale": "Fresh cached inventory indicates enough backroom stock; verify before moving units.",
+    "evidence": [
+      "backroom_qty=5",
+      "source=cache",
+      "age_minutes=10"
+    ],
+    "policy_refs": [
+      "POL-INV-01",
+      "POL-SAF-05"
+    ],
+    "risk_flags": [
+      "INVENTORY_CACHE_USED",
+      "VERIFY_BEFORE_ACTION"
+    ],
+    "escalation_required": true
+  }
+]
